@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tyler Gaye - Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #242424;
+    --border: #2e2e2e;
+    --text: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    --green: #34d399;
+    --amber: #fbbf24;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--accent-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  a:hover { color: #a5b4fc; text-decoration: underline; }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    border-radius: 2px;
+  }
+
+  .name {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #e8e8e8 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .tagline {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    font-size: 13px;
+  }
+  .contact-row a,
+  .contact-row span {
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .contact-row a:hover { color: var(--accent-light); text-decoration: none; }
+  .contact-row .dot { color: #444; }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    margin-top: 40px;
+  }
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--accent-light);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ---- SKILLS ---- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .skill-group h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-group ul {
+    list-style: none;
+  }
+  .skill-group li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-group li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ---- EXPERIENCE ---- */
+  .job {
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .job-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .job-dates {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--surface);
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .job-company {
+    font-size: 13px;
+    color: var(--accent-light);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .job p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ---- PROJECTS ---- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .project-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .project-card h3 a { color: var(--text); }
+  .project-card h3 a:hover { color: var(--accent-light); text-decoration: none; }
+  .project-card .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .tag-live { background: rgba(52, 211, 153, 0.15); color: var(--green); }
+  .tag-hackathon { background: rgba(251, 191, 36, 0.15); color: var(--amber); }
+  .tag-nft { background: rgba(99, 102, 241, 0.15); color: var(--accent-light); }
+  .tag-game { background: rgba(244, 114, 182, 0.15); color: #f472b6; }
+  .project-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .project-stat {
+    margin-top: 8px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* ---- EDUCATION ---- */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 22px;
+  }
+  .edu-degree {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .edu-school {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .edu-year {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+    background: var(--surface2);
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  /* ---- LICENSES ---- */
+  .licenses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .license-badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  /* ---- CERTS ---- */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .cert-item {
+    font-size: 13px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover {
+    border-color: var(--accent);
+  }
+  .cert-item a {
+    color: var(--text-secondary);
+  }
+  .cert-item:hover a {
+    color: var(--accent-light);
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    body { background: #fff; color: #111; }
+    .page { padding: 20px; }
+    .name { -webkit-text-fill-color: #111; }
+    .project-card, .edu-row, .cert-item, .license-badge {
+      background: #f8f8f8;
+      border-color: #ddd;
+    }
+    a { color: #333; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 32px 20px; }
+    .name { font-size: 32px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .job-header { flex-direction: column; }
+    .edu-row { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1 class="name">Tyler Gaye</h1>
+    <p class="tagline">Full Stack Software Engineer &mdash; AI, Finance, Web3</p>
+    <div class="contact-row">
+      <span>Denver, CO</span>
+      <span class="dot">&middot;</span>
+      <a href="mailto:web3dev.work@gmail.com">web3dev.work@gmail.com</a>
+      <span class="dot">&middot;</span>
+      <a href="https://github.com/tgaye" target="_blank">GitHub</a>
+      <span class="dot">&middot;</span>
+      <a href="https://www.linkedin.com/in/tylergaye" target="_blank">LinkedIn</a>
+      <span class="dot">&middot;</span>
+      <a href="https://web3resume.netlify.app/" target="_blank">Portfolio</a>
+    </div>
+  </header>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Core Stack</h3>
+        <ul>
+          <li>JavaScript / React</li>
+          <li>Python</li>
+          <li>HTML / CSS</li>
+          <li>Solidity</li>
+          <li>Node.js</li>
+          <li>AWS (EC2, S3)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Passions</h3>
+        <ul>
+          <li>Web App Prototyping</li>
+          <li>Data Visualization</li>
+          <li>Machine Learning</li>
+          <li>Blockchain Programming</li>
+          <li>HTML5 Game Dev</li>
+          <li>Financial Markets &amp; Derivatives</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Industry Knowledge</h3>
+        <ul>
+          <li>Git, RESTful APIs</li>
+          <li>Scripting &amp; Automation</li>
+          <li>Training &amp; Testing AI Models</li>
+          <li>Decentralized Web3 Apps</li>
+          <li>Smart Contract Deployment</li>
+          <li>Cloud Database Management</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <h2 class="section-title">Work Experience</h2>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Freelance Software Developer</span>
+        <span class="job-dates">Jun 2021 &ndash; Present</span>
+      </div>
+      <div class="job-company">Independent</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Financial Services Consultant</span>
+        <span class="job-dates">Apr 2019 &ndash; Jun 2021</span>
+      </div>
+      <div class="job-company">TIAA</div>
+      <p>Provided industry-leading service for clients related to investments, retirement plans, annuities, and life insurance products. Ensured clients had comprehensive, individually tailored plans for their financial future.</p>
+      <div class="licenses">
+        <span class="license-badge">SIE</span>
+        <span class="license-badge">Series 6</span>
+        <span class="license-badge">Series 63</span>
+        <span class="license-badge">Life Insurance &ndash; All States</span>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Data Science Teaching Assistant</span>
+        <span class="job-dates">Nov 2018 &ndash; Mar 2020</span>
+      </div>
+      <div class="job-company">Thinkful</div>
+      <p>Taught courses on practical data science with Python, machine learning libraries such as TensorFlow, and concepts including deep learning, natural language processing, and time series analysis. Helped formulate and deliver lesson plans for new programmers.</p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <h3><a href="https://quiddit.ai/" target="_blank">QuidditAI</a></h3>
+        <span class="tag tag-live">Live Product</span>
+        <p>End-to-end LLM-powered digital art &amp; game generator and NFT Marketplace. No-code creative solution wrapping open-source LLMs and image models.</p>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://gamegear.fun/" target="_blank">Gamegear</a></h3>
+        <span class="tag tag-live">Live Product</span>
+        <p>Web3 retro arcade emulator with hundreds of games, AI-powered crypto trading tools, bots, scanner tools, real-time alerts, and social features.</p>
+        <div class="project-stat">$10.2M USD market cap</div>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://x.com/PichiFinance" target="_blank">MichiProtocol</a></h3>
+        <span class="tag tag-hackathon">ETH Denver 2024 &mdash; 2nd Place</span>
+        <p>Trading protocol for pre-launch tokens wrapped as NFTs. Built during ETH Denver 2024 Hackathon.</p>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="http://www.tensor.trade/trade/solbuddy" target="_blank">SolBuddy</a></h3>
+        <span class="tag tag-nft">NFT / First of Kind</span>
+        <p>The first Flash Player game ever minted as an NFT, on the Solana blockchain.</p>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://html5gamesfun.netlify.app/" target="_blank">ETHarcade</a></h3>
+        <span class="tag tag-nft">NFT Collection</span>
+        <p>Collection of arcade games made available in-browser with JavaScript, minted on Ethereum.</p>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://www.beetlegaming.com/" target="_blank">BeetleGame</a></h3>
+        <span class="tag tag-game">Browser Game</span>
+        <p>Original digital card game with custom image assets, running entirely in the browser. 30,000+ lines of code.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">B.S. Computer Science</div>
+        <div class="edu-school">University of South Florida</div>
+      </div>
+      <div class="edu-year">2020</div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section">
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-item"><a href="https://coursera.org/share/776b7ae80b86d6ddd4e7fc6a7297ffcb" target="_blank">Applied Data Science with Python &mdash; UOM</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/9e8079b7e68bafdfe5859d2bf635b198" target="_blank">Big Data Integration &amp; Processing &mdash; UCSD</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/774f4ab36ac672e6472e888017a61a0b" target="_blank">Data Mining Specialization &mdash; UOI</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/3ef83b55dee4dcb7acc80a30e79cbf24" target="_blank">Data Structures &amp; Algorithms &mdash; UCSD</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/0a69f399d68b68a59dc42918b0e05732" target="_blank">Deep Learning Specialization &mdash; Andrew Ng</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/127a90f18ebd302b63fd4c97ead5367d" target="_blank">MySQL: Business Analytics &mdash; Duke</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/717b8694563493a5332ffcf8efbbae23" target="_blank">Mathematics for Machine Learning</a></div>
+      <div class="cert-item"><a href="https://coursera.org/share/83620caad4e406bcaee4297adc6f061f" target="_blank">Neural Networks &amp; Deep Learning</a></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
